@@ -1,5 +1,5 @@
 import unittest
-from application import clean_data
+from application import clean_data, _convert_height, _convert_experience
 
 
 class TestCleanData1(unittest.TestCase):
@@ -22,19 +22,10 @@ class TestCleanData1(unittest.TestCase):
         cleaned_player = clean_data(self.player)
         self.assertEqual(self.expected, cleaned_player)
 
-    def test_it_does_not_mutate_the_original_data(self):
+    def test_it_does_not_change_original_data(self):
         expected = self.player.copy()
         clean_data(self.player)
         self.assertEqual(expected, self.player)
-
-    def test_it_changes_height_to_integer(self):
-        cleaned_player = clean_data(self.player)
-        self.assertEqual(self.expected['height'], cleaned_player['height'])
-
-    def test_it_changes_no_experience_to_false(self):
-        cleaned_player = clean_data(self.player)
-        self.assertEqual(self.expected['experience'],
-                         cleaned_player['experience'])
 
 
 class TestCleanData2(unittest.TestCase):
@@ -57,19 +48,23 @@ class TestCleanData2(unittest.TestCase):
         cleaned_player = clean_data(self.player)
         self.assertEqual(self.expected, cleaned_player)
 
-    def test_it_does_not_mutate_the_original_data(self):
+    def test_it_does_not_change_original_data(self):
         expected = self.player.copy()
         clean_data(self.player)
         self.assertEqual(expected, self.player)
 
-    def test_it_changes_height_to_integer(self):
-        cleaned_player = clean_data(self.player)
-        self.assertEqual(self.expected['height'], cleaned_player['height'])
 
-    def test_it_changes_yes_experience_to_true(self):
-        cleaned_player = clean_data(self.player)
-        self.assertEqual(self.expected['experience'],
-                         cleaned_player['experience'])
+class TestHelperFunctions(unittest.TestCase):
+    def test_it_converts_yes_to_true(self):
+        self.assertEqual(True, _convert_experience('YES'))
+
+    def test_it_converts_no_to_false(self):
+        self.assertEqual(False, _convert_experience('NO'))
+
+    def test_it_converts_height_to_int(self):
+        self.assertEqual(39, _convert_height('39 inches'))
+        self.assertEqual(42, _convert_height('42 inches'))
+        self.assertEqual(100, _convert_height('100 inches'))
 
 
 if __name__ == '__main__':
