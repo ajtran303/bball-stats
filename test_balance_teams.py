@@ -65,3 +65,103 @@ class TestBalanceTeams(unittest.TestCase):
         all_unique_3 = set(bandits).isdisjoint(warriors)
 
         self.assertTrue(all_unique_1 and all_unique_2 and all_unique_3)
+
+    def test_it_balances_experienced_players(self):
+        rosters = balance_teams(self.teams, self.players)
+
+        experienced_panthers = get_experienced_players(rosters['Panthers'])
+        experienced_bandits = get_experienced_players(rosters['Bandits'])
+        experienced_warriors = get_experienced_players(rosters['Warriors'])
+
+        is_balanced_by_experience = (len(experienced_panthers) ==
+                                     len(experienced_bandits) ==
+                                     len(experienced_warriors))
+
+        self.assertTrue(is_balanced_by_experience)
+
+    def test_it_balances_inexperienced_players(self):
+        rosters = balance_teams(self.teams, self.players)
+
+        inexperienced_bandits = get_inexperienced_players(rosters['Bandits'])
+        inexperienced_panthers = get_inexperienced_players(rosters['Panthers'])
+        inexperienced_warriors = get_inexperienced_players(rosters['Warriors'])
+
+        is_balanced_by_inexperience = (len(inexperienced_panthers) ==
+                                       len(inexperienced_bandits) ==
+                                       len(inexperienced_warriors))
+
+        self.assertTrue(is_balanced_by_inexperience)
+
+
+class TestHelperFunctions(unittest.TestCase):
+    def setUp(self):
+        self.players = [
+            {
+                'name': 'Herschel Krustofski',
+                'experience': True
+            },
+            {
+                'name': 'Eva Gordon',
+                'experience': False
+            },
+            {
+                'name': 'Ben Finkelstein',
+                'experience': False
+            },
+            {
+                'name': 'Joe Smith',
+                'experience': True
+            },
+            {
+                'name': 'Diego Soto',
+                'experience': True
+            },
+            {
+                'name': 'Kimmy Stein',
+                'experience': False
+            }
+        ]
+
+    def test_it_can_filter_experienced_players(self):
+        expected = [
+            {
+                'name': 'Herschel Krustofski',
+                'experience': True
+            },
+            {
+                'name': 'Joe Smith',
+                'experience': True
+            },
+            {
+                'name': 'Diego Soto',
+                'experience': True
+            }
+        ]
+        experienced = get_experienced_players(self.players)
+        self.assertEqual(expected, experienced)
+
+    def test_it_can_filter_inexperienced_players(self):
+        expected = [
+            {
+                'name': 'Eva Gordon',
+                'experience': False
+            },
+            {
+                'name': 'Ben Finkelstein',
+                'experience': False
+            },
+            {
+                'name': 'Kimmy Stein',
+                'experience': False
+            }
+        ]
+        inexperienced = get_inexperienced_players(self.players)
+        self.assertEqual(expected, inexperienced)
+
+    def test_it_does_not_change_original_data(self):
+        expected = self.players.copy()
+
+        get_experienced_players(self.players)
+        get_inexperienced_players(self.players)
+
+        self.assertEqual(expected, self.players)
