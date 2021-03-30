@@ -50,12 +50,12 @@ def balance_teams(teams, players):
 
 def get_player_names(players):
     names = list(map(lambda player: player['name'], players))
-    return f'Players on team:\n  {", ".join(names)}'
+    return ', '.join(names)
 
 
 def get_guardians(players):
-    guardians = list(map(lambda player: ', '.join(player['guardians']), players))
-    return f'Guardians:\n  {", ".join(guardians)}'
+    guards = list(map(lambda player: ', '.join(player['guardians']), players))
+    return ', '.join(guards)
 
 
 def get_experienced_players(players):
@@ -117,8 +117,8 @@ if __name__ == '__main__':
               f'Total experienced: {len(get_experienced_players(roster))}\n' +
               f'Total inexperienced: {len(get_inexperienced_players(roster))}\n' +
               f'Average height: {round(get_average_height(roster), 2)}\n\n' +
-              f'{get_player_names(roster)}\n\n' +
-              f'{get_guardians(roster)}' +
+              f'Players on team:\n  {get_player_names(roster)}\n\n' +
+              f'Guardians:\n  {get_guardians(roster)}' +
               '\n')
 
 

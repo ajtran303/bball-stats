@@ -20,12 +20,12 @@ class TestTeamStats(unittest.TestCase):
 
     def test_it_gets_player_names(self):
         names = get_player_names(self.team)
-        expected = 'Players on team:\n  Chloe Alaska, Les Clay'
+        expected = 'Chloe Alaska, Les Clay'
         self.assertEqual(expected, names)
 
     def test_it_gets_guardians(self):
         guardians = get_guardians(self.team)
-        expected = 'Guardians:\n  David Alaska, Jamie Alaska, Wynonna Brown'
+        expected = 'David Alaska, Jamie Alaska, Wynonna Brown'
         self.assertEqual(expected, guardians)
 
     def test_it_gets_average_height(self):
