@@ -8,16 +8,16 @@ class TestBalanceTeams(unittest.TestCase):
         self.teams = ['Panthers', 'Bandits', 'Warriors']
         self.players = [
             {
-                'name': 'Herschel Krustofski',
-                'experience': True
-            },
-            {
                 'name': 'Eva Gordon',
                 'experience': False
             },
             {
                 'name': 'Ben Finkelstein',
                 'experience': False
+            },
+            {
+                'name': 'Herschel Krustofski',
+                'experience': True
             },
             {
                 'name': 'Joe Smith',
