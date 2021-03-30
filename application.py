@@ -48,27 +48,27 @@ if __name__ == '__main__':
 
     def show_menu(rosters):
         while True:
-            print('MAIN MENU\n\nA) Display Team Stats\nB) Quit\n')
-            menu_option = input("Enter an option:\n").upper()
-            if menu_option not in 'AB':
+            print('MAIN MENU\n\n1) Display Team Stats\n2) Quit\n')
+            menu_option = input("Enter an option:\n")
+            if menu_option not in '12':
                 print('That is not a valid option!\n')
-            elif menu_option == 'B':
+            elif menu_option == '2':
                 print('Goodbye!')
                 break
-            elif menu_option == 'A':
+            elif menu_option == '1':
                 team = get_team()
                 show_stats(team, rosters[team])
                 input('Press Any key to return to main menu:\n')
 
 
     def get_team():
-        teams = {'A': 'Panthers', 'B': 'Bandits', 'C': 'Warriors'}
+        teams = {'1': 'Panthers', '2': 'Bandits', '3': 'Warriors'}
         team = None
         while team is None:
-            print('\nSELECT TEAM:\nA) Panthers\nB) Bandits\nC) Warriors\n')
+            print('\nSELECT TEAM:\n1) Panthers\n2) Bandits\n3) Warriors\n')
             team_option = input("Enter an option:\n")
             try:
-                team = teams[team_option.upper()]
+                team = teams[team_option]
             except KeyError:
                 print('That is not a valid option!\n')
         return team
