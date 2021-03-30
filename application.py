@@ -8,6 +8,7 @@ def clean_data(player):
     player = player.copy()
     player['experience'] = convert_experience(player['experience'])
     player['height'] = convert_height(player['height'])
+    player['guardians'] = convert_guardians(player['guardians'])
     return player
 
 
@@ -20,6 +21,10 @@ def convert_experience(experience):
         return True
     elif experience == 'NO':
         return False
+
+
+def convert_guardians(guardians):
+    return guardians.split(' and ')
 
 
 def balance_teams(teams, players):
