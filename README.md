@@ -19,6 +19,8 @@ There should be 21 passing tests:
 python3 -m unittest
 ```
 
+I have tests for my functions that make stats, clean data, and balance teams. I do not have testa for the "view logic" in my dunder main statement. I would need to learn about mocking and stubbing user input in order to test those. For now I'm okay with testing the "implementation logic".
+
 ### Generate a coverage report (optional)
 
 1. Activate a virtual environment to install the `coverage` package:
