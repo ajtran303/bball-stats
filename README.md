@@ -1,22 +1,94 @@
 # Basketball Team Stats Tool
-In this project you will be writing a program that reads from the "constants" data (`PLAYERS` and `TEAMS`) in `constants.py`. This data will need to be translated into a new collection of your choosing and the fields need to be changed to something that makes more sense for Python to do its comparisons.
 
+## Getting Started
 
-**NOTE**: Python has no concept of actual constants like some other languages out there. But it is a convention in Python to treat ALL CAPS variables as if they are in-fact constants.
+### Installation
 
+Clone and navigate into the repo:
 
-**Steps to get started:**
+```zsh
+git clone https://github.com/ajtran303/bball-stats.git
+cd bball-stats
+```
 
-1. Create a new empty script file called `app.py` or `application.py`
+### Run the tests
 
-2. Inside this new file, you will want a Dunder Main statement:
-   For a refresh on Dunder Main:
-   https://teamtreehouse.com/library/understanding-dunder-main-main
+There should be 21 passing tests:
 
-3. Any print statements or function calls you will want to be inside Dunder Main or inside a main function call which is nested inside Dunder Main.
-   If you need a refresh, check out the supplied Project 1 files/workspace for an example.
-   
+```zsh
+python3 -m unittest
+```
 
+### Generate a coverage report (optional)
 
-If you get stuck, try to work through the problem. Sometimes it helps to try to write/draw out your steps on paper in the order your program should run in and solve each step 1 at a time. If you are still stuck be sure to reach out in the Python Techdegree #unit-02 Slack channel.
+1. Activate a virtual environment to install the `coverage` package:
 
+```zsh
+python3 -m venv .venv/
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+2. Generate the report and it should show 100% coverage on `application.py`:
+
+```zsh
+coverage run -m unittest && coverage report
+```
+
+3. When you are done, deactivate and remove your virtual environment.
+
+```zsh
+deactivate && rm -rf .venv/
+```
+
+## Example Usage
+
+### Start the program 
+
+From the command line:
+
+```zsh
+python3 application.py
+```
+
+Navigate through the main menu by selecting an option:
+
+```m
+Welcome to the Basketball Stats tool!
+MAIN MENU
+
+1) Display Team Stats
+2) Quit
+
+Enter an option:
+_
+```
+
+Next, you will be prompted to select a team:
+
+```m
+SELECT TEAM:
+1) Panthers
+2) Bandits
+3) Warriors
+
+Enter an option:
+_
+```
+
+Selecting a valid option will display that team's statistics:
+
+- Total Players
+- Total Experienced Players
+- Total Inexperienced Players
+- Average Height of Players
+- Names of Players
+- Names of Guardians of Players
+
+Selecting a non-valid option will prompt you to pick again!
+
+### Quitting the Program
+
+Select option `2` at the `MAIN MENU`.
+
+Or use the keyboard shortcut `<control>+C` to immediately quit.
