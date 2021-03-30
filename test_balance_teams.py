@@ -1,5 +1,6 @@
 import unittest
-from application import balance_teams, get_experienced_players
+from application import (balance_teams, get_experienced_players, 
+                         get_inexperienced_players)
 
 
 class TestBalanceTeams(unittest.TestCase):

@@ -56,6 +56,10 @@ def get_experienced_players(players):
     return list(filter(lambda player: player['experience'] is True, players))
 
 
+def get_inexperienced_players(players):
+    return list(filter(lambda player: player['experience'] is False, players))
+
+
 if __name__ == '__main__':
 
     def main():
