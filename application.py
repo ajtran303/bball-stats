@@ -105,7 +105,9 @@ if __name__ == '__main__':
     def show_stats(team_name, roster):
         title = f'Team Stats: {team_name}'
         print('\n' + title + '\n' + '-'*len(title) + '\n' +
-              f'Total players: {len(roster)}\n\n' +
+              f'Total players: {len(roster)}\n' +
+              f'Total experienced: {len(get_experienced_players(roster))}\n' +
+              f'Total inexperienced: {len(get_inexperienced_players(roster))}\n\n' +
               f'{get_player_names(roster)}\n\n' +
               f'{get_guardians(roster)}' +
               '\n')
