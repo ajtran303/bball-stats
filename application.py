@@ -46,6 +46,14 @@ def get_player_names(players):
     names = list(map(lambda player: player['name'], players))
     return f'Players on team:\n  {", ".join(names)}'
 
+
+def get_guardians(players):
+    guardians = list(map(lambda player: ', '.join(player['guardians']), players))
+    return f'Guardians:\n  {", ".join(guardians)}'
+
+
+
+
 if __name__ == '__main__':
 
     def main():
@@ -87,7 +95,8 @@ if __name__ == '__main__':
         title = f'Team Stats: {team_name}'
         print('\n' + title + '\n' + '-'*len(title) + '\n' +
               f'Total players: {len(roster)}\n\n' +
-              f'{get_player_names(roster)}' +
+              f'{get_player_names(roster)}\n\n' +
+              f'{get_guardians(roster)}' +
               '\n')
 
 
