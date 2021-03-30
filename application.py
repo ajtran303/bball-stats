@@ -28,16 +28,21 @@ def convert_guardians(guardians):
 
 
 def balance_teams(teams, players):
-    team_size = int(len(players) / len(teams))
+    experienced = get_experienced_players(players)
+    inexperienced = get_inexperienced_players(players)
+
     rosters = {}
 
     for index, team in enumerate(teams):
         rosters[team] = list()
 
-        start = int(team_size * index)
-        end = start + team_size
-        for player in islice(players, start, end):
-            rosters[team].append(player)
+        for players_by_experience in [experienced, inexperienced]:
+            team_limit = int(len(players_by_experience) / len(teams))
+            start = int(team_limit * index)
+            end = start + team_limit
+
+            for player in islice(players_by_experience, start, end):
+                rosters[team].append(player)
 
     return rosters
 
