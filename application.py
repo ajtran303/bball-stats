@@ -42,6 +42,10 @@ def balance_teams(teams, players):
     return rosters
 
 
+def get_player_names(players):
+    names = list(map(lambda player: player['name'], players))
+    return f'Players on team:\n  {", ".join(names)}'
+
 if __name__ == '__main__':
 
     def main():
@@ -81,11 +85,10 @@ if __name__ == '__main__':
 
     def show_stats(team_name, roster):
         title = f'Team Stats: {team_name}'
-        names = list(map(lambda player: player['name'], roster))
-        print('\n' + title + '\n' + '-'*len(title) + '\n'
+        print('\n' + title + '\n' + '-'*len(title) + '\n' +
               f'Total players: {len(roster)}\n\n' +
-              'Players on team:\n' +
-              '  ' + ', '.join(names) + '\n')
+              f'{get_player_names(roster)}' +
+              '\n')
 
 
     main()
