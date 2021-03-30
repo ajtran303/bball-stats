@@ -1,5 +1,5 @@
 import unittest
-from application import clean_data, _convert_height, _convert_experience
+from application import clean_data, convert_height, convert_experience
 
 
 class TestCleanData1(unittest.TestCase):
@@ -56,15 +56,15 @@ class TestCleanData2(unittest.TestCase):
 
 class TestHelperFunctions(unittest.TestCase):
     def test_it_converts_yes_to_true(self):
-        self.assertEqual(True, _convert_experience('YES'))
+        self.assertEqual(True, convert_experience('YES'))
 
     def test_it_converts_no_to_false(self):
-        self.assertEqual(False, _convert_experience('NO'))
+        self.assertEqual(False, convert_experience('NO'))
 
     def test_it_converts_height_to_int(self):
-        self.assertEqual(39, _convert_height('39 inches'))
-        self.assertEqual(42, _convert_height('42 inches'))
-        self.assertEqual(100, _convert_height('100 inches'))
+        self.assertEqual(39, convert_height('39 inches'))
+        self.assertEqual(42, convert_height('42 inches'))
+        self.assertEqual(100, convert_height('100 inches'))
 
 
 if __name__ == '__main__':
