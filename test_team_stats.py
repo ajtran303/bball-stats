@@ -1,5 +1,5 @@
 import unittest
-from application import get_player_names
+from application import get_player_names, get_guardians
 
 
 class TestTeamStats(unittest.TestCase):
@@ -23,14 +23,19 @@ class TestTeamStats(unittest.TestCase):
         expected = 'Players on team:\n  Chloe Alaska, Les Clay'
         self.assertEqual(expected, names)
 
+    def test_it_gets_guardians(self):
+        guardians = get_guardians(self.team)
+        expected = 'Guardians:\n  David Alaska, Jamie Alaska, Wynonna Brown'
+        self.assertEqual(expected, guardians)
+
     def test_it_does_not_change_original_data(self):
         player_1 = self.player_1.copy()
         player_2 = self.player_2.copy()
         team = self.team.copy()
 
         get_player_names(self.team)
+        get_guardians(self.team)
 
         self.assertEqual(player_1, self.player_1)
         self.assertEqual(player_2, self.player_2)
         self.assertEqual(team, self.team)
-        
