@@ -2,6 +2,7 @@ from constants import (TEAMS as teams,
                        PLAYERS as players)
 
 from itertools import islice
+from statistics import mean
 
 
 def clean_data(player):
@@ -65,6 +66,13 @@ def get_inexperienced_players(players):
     return list(filter(lambda player: player['experience'] is False, players))
 
 
+def get_average_height(players):
+    heights = list(map(lambda player: player['height'], players))
+    return mean(heights)
+
+
+
+
 if __name__ == '__main__':
 
     def main():
@@ -107,7 +115,8 @@ if __name__ == '__main__':
         print('\n' + title + '\n' + '-'*len(title) + '\n' +
               f'Total players: {len(roster)}\n' +
               f'Total experienced: {len(get_experienced_players(roster))}\n' +
-              f'Total inexperienced: {len(get_inexperienced_players(roster))}\n\n' +
+              f'Total inexperienced: {len(get_inexperienced_players(roster))}\n' +
+              f'Average height: {round(get_average_height(roster), 2)}\n\n' +
               f'{get_player_names(roster)}\n\n' +
               f'{get_guardians(roster)}' +
               '\n')
