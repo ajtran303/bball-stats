@@ -52,6 +52,8 @@ def get_guardians(players):
     return f'Guardians:\n  {", ".join(guardians)}'
 
 
+def get_experienced_players(players):
+    return list(filter(lambda player: player['experience'] is True, players))
 
 
 if __name__ == '__main__':
