@@ -1,5 +1,6 @@
 import unittest
-from application import clean_data, convert_height, convert_experience
+from application import (clean_data, convert_height,
+                         convert_experience, convert_guardians)
 
 
 class TestCleanData1(unittest.TestCase):
@@ -13,7 +14,7 @@ class TestCleanData1(unittest.TestCase):
 
         self.expected = {
             'name': 'Chloe Alaska',
-            'guardians': 'David Alaska and Jamie Alaska',
+            'guardians': ['David Alaska', 'Jamie Alaska'],
             'experience': False,
             'height': 47
         }
@@ -39,7 +40,7 @@ class TestCleanData2(unittest.TestCase):
 
         self.expected = {
             'name': 'Les Clay',
-            'guardians': 'Wynonna Brown',
+            'guardians': ['Wynonna Brown'],
             'experience': True,
             'height': 42
         }
@@ -65,6 +66,16 @@ class TestHelperFunctions(unittest.TestCase):
         self.assertEqual(39, convert_height('39 inches'))
         self.assertEqual(42, convert_height('42 inches'))
         self.assertEqual(100, convert_height('100 inches'))
+
+    def test_it_converts_guardians_1(self):
+        expected = ['David Alaska', 'Jamie Alaska']
+        actual = convert_guardians('David Alaska and Jamie Alaska')
+        self.assertEqual(expected, actual)
+
+    def test_it_converts_guardians_2(self):
+        expected = ['Wynonna Brown']
+        actual = convert_guardians('Wynonna Brown')
+        self.assertEqual(expected, actual)
 
 
 if __name__ == '__main__':
